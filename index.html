@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
-<!-- <head>
-    <meta charset="UTF-8">
-    <title>Trang Web Của Tôi</title>
-    <link rel="stylesheet" href="styles.css"> -->
-</head>
+<head>
 <body>
      <audio id="background-music" loop>
       <source src="assets/audio/we.wish.you.1.mp3" type="audio/mpeg">
@@ -12,9 +8,6 @@
     </audio>
     
     
-    <div>
-        <button onclick="playMusic()">Phát Nhạc</button>
-        <button onclick="pauseMusic()">Tạm Dừng Nhạc</button>
     </div>
 
     <script>
@@ -32,6 +25,119 @@
             music.play();
         }, { once: true });
     </script>
+    <meta charset="UTF-8">
+    <title>Christmas Tree</title>
+    <link rel="icon" href="./static/favicon.ico" />
+    <link rel="apple-touch-icon" href="./static/apple-touch-icon.png" />
+    <link rel="manifest" href="./static/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#FFFFFF" />
+    
+    <!-- Liên kết CSS -->
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet" />
+    <link rel="stylesheet" href="css/flipdown.css" />
+    
+    <!-- Thêm CSS cho hiệu ứng nền động và các hiệu ứng khác -->
+    <style>
+        /* CSS cho lớp nền động */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3; /* Đặt z-index thấp để lớp nền nằm phía sau */
+            background: url('assets/images/your-background-image.jpg') repeat-x; /* Thay 'your-background-image.jpg' bằng tên hình ảnh của bạn */
+            background-size: cover;
+            animation: moveBackground 60s linear infinite;
+        }
+
+        /* Định nghĩa hoạt ảnh chuyển động nền */
+        @keyframes moveBackground {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: -100000px 0; /* Điều chỉnh giá trị này để thay đổi tốc độ di chuyển */
+            }
+        }
+
+        /* CSS cho hiệu ứng tuyết rơi */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Cho phép người dùng tương tác với các phần tử phía trên */
+            z-index: -2; /* Đặt z-index giữa lớp nền và các nội dung khác */
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #FFFFFF;
+            user-select: none;
+            font-size: 1em;
+            opacity: 0.8;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* CSS cho các nút điều khiển nhạc */
+        .music-controls button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .music-controls button:hover {
+            background-color: #cc0000;
+        }
+
+        /* Các CSS khác (nếu có) */
+    </style>
+    
+    <!-- Liên kết JavaScript -->
+    <script src="js/flipdown.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+      <!-- Thêm lớp nền động -->
+      <div class="animated-background"></div>
+  
+      <!-- Thêm nhạc nền -->
+      <audio id="background-music" loop>
+          <source src="assets/audio/we.wish.you.1.mp3" type="audio/mpeg">
+          <source src="assets/audio/we.wish.you.1.ogg" type="audio/ogg">
+          Trình duyệt của bạn không hỗ trợ thẻ audio.
+      </audio>
+      
+      <!-- Thêm nút điều khiển nhạc -->
+      <div class="music-controls" style="position: fixed; bottom: 20px; right: 20px;">
+          <button onclick="playMusic()">▶ Phát Nhạc</button>
+          <button onclick="pauseMusic()">❚❚ Tạm Dừng</button>
+      </div>
+  
 </body>
 </html>
 <html lang="en">
@@ -204,10 +310,40 @@
       </svg>
     </div>
     <div class="snowflakes">
-      <script>
-        for (var i = 0; i < 10; i++) {
-          document.write("<div class='snowflake'>❅</div>");
-        }
+        <!-- Thêm hiệu ứng tuyết rơi -->
+        <div class="snowflakes"></div>
+        <script>
+            // Số lượng tuyết rơi
+            const snowflakeCount = 100;
+    
+            const snowflakesContainer = document.querySelector('.snowflakes');
+    
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.textContent = '❅';
+    
+                // Đặt vị trí ngẫu nhiên theo chiều ngang
+                snowflake.style.left = Math.random() * 100 + 'vw';
+    
+                // Đặt kích thước ngẫu nhiên
+                const size = Math.random() * 1.5 + 0.5; // Từ 0.5em đến 2em
+                snowflake.style.fontSize = size + 'em';
+    
+                // Đặt độ trong suốt ngẫu nhiên
+                snowflake.style.opacity = Math.random() * 0.5 + 0.5; // Từ 0.5 đến 1
+    
+                // Đặt tốc độ rơi ngẫu nhiên
+                const duration = Math.random() * 20 + 10; // Từ 10s đến 30s
+                snowflake.style.animationDuration = duration + 's';
+    
+                // Đặt độ trễ bắt đầu hoạt ảnh ngẫu nhiên
+                snowflake.style.animationDelay = Math.random() * 20 + 's';
+    
+                snowflakesContainer.appendChild(snowflake);
+            }
+        </script>
+      
       </script>
     </div>
     <ul class="lightrope">
