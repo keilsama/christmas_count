@@ -314,15 +314,16 @@
         <div class="snowflakes"></div>
         <script>
             // Số lượng tuyết rơi
-            const snowflakeCount = 150;
+            const snowflakeCount = 120;
     
             const snowflakesContainer = document.querySelector('.snowflakes');
     
             for (let i = 0; i < snowflakeCount; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.classList.add('snowflake');
-                snowflake.textContent = 'rian';
-                snowflake.textContent = '❄️';
+                // snowflake.textContent = 'rian';
+                // snowflake.textContent = '❄️';
+                snowflake.textContent = '❅';
     
                 // Đặt vị trí ngẫu nhiên theo chiều ngang
                 snowflake.style.left = Math.random() * 100 + 'vw';
